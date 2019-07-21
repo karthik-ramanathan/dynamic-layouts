@@ -14,7 +14,7 @@ export default class DemoComponent extends Component{
 		console.log(JSON_BANK, JSON_TRAFFIC)
 		return (
 			<div className="DemoComponent">
-				<ChartLoader type={ChartTypes.LINE} data={JSON_BANK} />
+				<ChartLoader type={ChartTypes.LINE} data={JSON_BANK} xAxis={["shares", "balance"]} yAxis={"age"} />
 			</div>
 		)
 	}
