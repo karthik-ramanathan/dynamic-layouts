@@ -1,0 +1,63 @@
+{  
+  "icaRttReport":{  
+     "aggregated":{  
+        "totalConnectedSessions":97,
+        "lastThresholdUpdatedDate":"0001-01-01T00:00:00",
+        "items":[  
+           {  
+              "sessions":"Excellent",
+              "timeRange":"0 to 100 ms",
+              "value":14
+           },
+           {  
+              "sessions":"Acceptable",
+              "timeRange":"100 to 300 ms",
+              "value":31
+           },
+           {  
+              "sessions":"Poor",
+              "timeRange":"More than 300 ms",
+              "value":52
+           }
+        ]
+     },
+     "items":[  
+        {  
+           "dateTime":1557302400000,
+           "excellent":0,
+           "acceptable":4,
+           "poor":3
+        },
+        {  
+           "dateTime":1557302700000,
+           "excellent":0,
+           "acceptable":4,
+           "poor":3
+        },
+        {  
+           "dateTime":1557303000000,
+           "excellent":1,
+           "acceptable":2,
+           "poor":6
+        },
+        {  
+           "dateTime":1557303300000,
+           "excellent":1,
+           "acceptable":2,
+           "poor":6
+        },
+        {  
+           "dateTime":1557303600000,
+           "excellent":1,
+           "acceptable":2,
+           "poor":6
+        },
+        {  
+           "dateTime":1557309300000,
+           "excellent":1,
+           "acceptable":5,
+           "poor":4
+        }
+     ]
+  }
+}

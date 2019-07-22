@@ -4,77 +4,103 @@ export const ChartTypes = {
     AREA: "AREA",
     LINE: "LINE",
     BAR: "BAR",
-    PIE: "PIE",
     SCATTER: "SCATTER"
 };
 
-import Chart from "react-google-charts";
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 export default class ChartLoader extends React.Component {
 
     render() {
+
+        const options = {
+            title: {
+                text: this.props.title || ""
+            },
+            subtitle: {
+                text: this.props.subtitle || ""
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Date'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                min: 0
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+            },
+        
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: true
+                    }
+                }
+            },
+        
+            colors: ['#6CF', '#39F', '#06C', '#036', '#000'],
+            series: []
+        };
+
+
+        let yAxisFields = [];
+        if(typeof this.props.yAxis == "string"){
+            yAxisFields.push(this.props.yAxis);
+        }else{
+            yAxisFields = this.props.yAxis;
+        }
+
+        for(var axis in yAxisFields){
+            let series = [];
+            for(var data in this.props.data){
+                //new Date(this.props.data[data][this.props.xAxis]) != "Invalid Date"
+                series.push([new Date(this.props.data[data][this.props.xAxis]), this.props.data[data][yAxisFields[axis]]])
+            }
+            options.series.push({
+                name: yAxisFields[axis],
+                data: series
+            });
+        }
+
         if (!this.props.type in ChartTypes) {
             return (
                 <div>Invalid Config</div>
             )
         }
 
-        if (this.props.type == ChartTypes.AREA) {
-            let rows = this.props.data.map((item) => {
-                return [item.age, item.shares]
-            });
-
-            let columns = [
-                {
-                    type: "number",
-                    label: "Age"
-                },
-                {
-                    type: "number",
-                    label: "shares"
-
-                }
-            ]
-            return (
-                <Chart
-                    chartType="AreaChart"
-                    width="100%"
-                    height="400px"
-                    legendToggle
-                    rows={rows}
-                    columns={columns}
-                />
-            )
-        }
-
         if (this.props.type == ChartTypes.LINE) {
-            let rows = this.props.data.map((item) => {
-                return [item.age, item.shares]
-            });
-
-            let data = this.props.data.map((item)=>{
-                return [item.age, item.shares, item.balance]
-            });
-            data.unshift(
-                ["Age", "shares", "balance"],
-            )
-
-            console.log(data)
-            return (
-                <Chart
-                    chartType="LineChart"
-                    width="100%"
-                    height="400px"
-                    legendToggle
-                    data={data}
-                />
-            )
+            options.chart = {
+                type: 'spline'
+            };
+        }else if (this.props.type == ChartTypes.AREA) {
+            options.chart = {
+                type: 'areaspline'
+            };
+        }else if (this.props.type == ChartTypes.BAR) {
+            options.chart = {
+                type: 'column'
+            };
+        }else if (this.props.type == ChartTypes.SCATTER) {
+            options.chart = {
+                type: 'scatter'
+            };
         }
 
         return (
-            <div>
-                Loading chart {this.props.type}
-            </div>
+            <HighchartsReact highcharts={Highcharts} options={options} />
         )
+
     }
 }
