@@ -29,9 +29,9 @@ export default class DemoComponent extends Component {
 
 	isValid(){
 		if(this.state.type !== null) {
-			return true
+			return false
 		}
-		return false
+		return true
 	}
 
 	render() {
