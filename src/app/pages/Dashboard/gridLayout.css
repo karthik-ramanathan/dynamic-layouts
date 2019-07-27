@@ -1,0 +1,9 @@
+.remove{
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    z-index: 1000;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
