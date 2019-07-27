@@ -17,6 +17,9 @@ export default class ChartLoader extends React.Component {
         const options = {
             responsive: {
                 rules: [{
+                  condition: {
+                    maxWidth: 1200
+                  },
                   chartOptions: {
                     legend: {
                       align: 'center',
