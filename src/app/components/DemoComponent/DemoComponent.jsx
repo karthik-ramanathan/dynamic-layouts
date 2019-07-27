@@ -70,7 +70,7 @@ export default class StackItem extends Component {
 					<div>
 						<div>
 
-							<Select style={{ width: 300 }} value={this.state.data} onChange={(value) => {
+							<Select placeholder="Type of data" style={{ width: 150, marginRight: 15, marginLeft: 15 }} value={this.state.data} onChange={(value) => {
 								this.state.data = value;
 								this.state.xAxis = null;
 								this.state.yAxis = null;
@@ -82,7 +82,7 @@ export default class StackItem extends Component {
 								<Select.Option value="usersession">User Logon Data</Select.Option>
 							</Select>
 
-							<Select style={{ width: 300 }} value={this.state.type} onChange={(value) => {
+							<Select  placeholder="Type of chart" style={{ width: 150, marginRight: 15, marginLeft: 15 }} value={this.state.type} onChange={(value) => {
 								this.state.type = value;
 								this.setState({
 									editMode: this.isValid()
@@ -92,7 +92,7 @@ export default class StackItem extends Component {
 							</Select>
 
 {this.state.data &&
-							<Select style={{ width: 300 }} value={this.state.xAxis} onChange={(value) => {
+							<Select placeholder="xAxis data" style={{ width: 150, marginRight: 15, marginLeft: 15 }} value={this.state.xAxis} onChange={(value) => {
 								this.state.xAxis = value;
 								this.setState({
 									editMode: this.isValid()
@@ -103,7 +103,7 @@ export default class StackItem extends Component {
 }
 
 {this.state.data &&
-							<Select mode="multiple" style={{ width: 300 }} value={this.state.yAxis} onChange={(value) => {
+							<Select placeholder="yAxis data" style={{ width: 150, marginRight: 15, marginLeft: 15 }} mode="multiple" style={{ width: 300 }} value={this.state.yAxis} onChange={(value) => {
 								this.state.yAxis = value;
 								this.setState({
 									editMode: this.isValid()
