@@ -44,9 +44,13 @@ export default class GridLayout extends React.Component {
       )
     }
     return (
-    <>
-    <button onClick={this.saveConfig}>save config</button>
-      <ReactGridLayout className="layout" cols={12} rowHeight={30} width={1200} autoSize={true}>
+        <>
+        <button onClick={this.saveConfig}>save config</button>
+      <ReactGridLayout className="layout" cols={12} rowHeight={30} width={1200} autoSize={true} onResize={()=>{
+        window.dispatchEvent(new Event('resize'));
+      }} onLayoutChange={(layout)=>{
+        console.log(layout);
+      }}>
         {this.state.config.map((stack, index) => {
           let itemOptions ={
             minW: StackOptions.minW,
@@ -58,7 +62,7 @@ export default class GridLayout extends React.Component {
             i: index.toString()
           }
           return (
-            <div key={index} data-grid={itemOptions}>
+            <div key={index} data-grid={itemOptions} style={{overflow: "hidden"}}>
               <StackItem {...stack.data} />
             </div>
           )
