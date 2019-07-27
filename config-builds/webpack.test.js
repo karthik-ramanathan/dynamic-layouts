@@ -37,7 +37,7 @@ module.exports = {
             {
                 test: /\.(le|c)ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    "style-loader",
                     { loader: 'css-loader', options: { url: false, sourceMap: true } },
                     { loader: 'less-loader', options: { javascriptEnabled: true, sourceMap: true } }
 
@@ -46,48 +46,16 @@ module.exports = {
         ]
     },
     plugins: [
-        // new CleanWebpackPlugin({
-        //     dry: false,
-        //     verbose: true,
-        //     cleanOnceBeforeBuildPatterns: ['../public'],
-        //     dangerouslyAllowCleanPatternsOutsideProject: true
-        // }),
-        new MiniCssExtractPlugin({
-            filename: 'style.[hash].css',
-            chunkFilename: '[id].[hash].css'
-        }),
-
         new HtmlWebPackPlugin({
             template: './config-template/index.html',
             filename: './index.html'
-        }),
-        new BundleAnalyzerPlugin({
-            analyzerMode: "static",
-            reportFilename: "report.html",
-            openAnalyzer: false
-
         })
     ],
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    devtool: 'eval',
+    devtool: 'source-map',
     optimization: {
-        minimizer: [new TerserJSPlugin({
-            sourceMap: true,
-            extractComments: true,
-        }), new OptimizeCSSAssetsPlugin({
-            assetNameRegExp: /\.css$/g,
-            cssProcessor: require("cssnano"),
-            cssProcessorPluginOptions: {
-                preset: ["default", {
-                    discardComments: {
-                        removeAll: true
-                    }
-                }],
-            },
-            canPrint: true
-        })],
         splitChunks: {
             cacheGroups: {
                 vendor: {

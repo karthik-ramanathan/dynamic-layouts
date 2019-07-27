@@ -15,6 +15,17 @@ export default class ChartLoader extends React.Component {
     render() {
 
         const options = {
+            responsive: {
+                rules: [{
+                  chartOptions: {
+                    legend: {
+                      align: 'center',
+                      verticalAlign: 'bottom',
+                      layout: 'horizontal'
+                    }
+                  }
+                }]
+              },
             title: {
                 text: this.props.title || ""
             },
@@ -99,7 +110,9 @@ export default class ChartLoader extends React.Component {
         }
 
         return (
-            <HighchartsReact highcharts={Highcharts} options={options} />
+            <HighchartsReact highcharts={Highcharts} options={options} allowChartUpdate={true} containerProps={{
+                className: "customContainer"
+            }}/>
         )
 
     }
