@@ -1,5 +1,5 @@
 {  
-  "icaRttReport":{  
+  "report":{  
      "aggregated":{  
         "totalConnectedSessions":97,
         "lastThresholdUpdatedDate":"0001-01-01T00:00:00",

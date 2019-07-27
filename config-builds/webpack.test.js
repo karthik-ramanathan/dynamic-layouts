@@ -9,7 +9,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-    mode: "production",
+    mode: "development",
     entry: {
         main: './src/index.js'
     },
@@ -46,12 +46,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin({
-            dry: false,
-            verbose: true,
-            cleanOnceBeforeBuildPatterns: ['../public'],
-            dangerouslyAllowCleanPatternsOutsideProject: true
-        }),
+        // new CleanWebpackPlugin({
+        //     dry: false,
+        //     verbose: true,
+        //     cleanOnceBeforeBuildPatterns: ['../public'],
+        //     dangerouslyAllowCleanPatternsOutsideProject: true
+        // }),
         new MiniCssExtractPlugin({
             filename: 'style.[hash].css',
             chunkFilename: '[id].[hash].css'
