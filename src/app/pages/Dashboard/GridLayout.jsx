@@ -25,9 +25,9 @@ export default class GridLayout extends React.Component {
       let config = localStorage.getItem("config");
       if(!config){
           config = [
-            { x: 0, y: 0, w: 8, h: 6, data: { data: "usersession", type: "AREA", xAxis: "dateTime", yAxis: "usersSessions" } },
-            { x: 9, y: 0, w: 4, h: 6, data: { data: "usersession", type: "LINE", xAxis: "dateTime", yAxis: "uniqueUsers" } },
-            { x: 0, y: 7, w: 12, h: 8, data: { data: "usersession", type: "BAR", xAxis: "dateTime", yAxis: "usersSessions" } }
+            {x: 0, y: 0, w: 8, h: 6, data: { title: "test 1", data: "usersession", type: "AREA", xAxis: "dateTime", yAxis: "usersSessions" } },
+            {x: 9, y: 0, w: 4, h: 6, data: { title: "test 2", data: "usersession", type: "LINE", xAxis: "dateTime", yAxis: "uniqueUsers" } },
+            {x: 0, y: 7, w: 12, h: 8, data: { title: "test 3", data: "usersession", type: "BAR", xAxis: "dateTime", yAxis: "usersSessions" } }
           ]
       }else{
           config = JSON.parse(config);
@@ -56,6 +56,13 @@ export default class GridLayout extends React.Component {
       <ReactGridLayout className="layout" cols={12} rowHeight={30} width={1200} autoSize={true} onResize={()=>{
         window.dispatchEvent(new Event('resize'));
       }} onLayoutChange={(layout)=>{
+        layout.map((item)=>{
+          this.state.config[parseInt(item.i)].x = item.x;
+          this.state.config[parseInt(item.i)].y = item.y;
+          this.state.config[parseInt(item.i)].w = item.w;
+          this.state.config[parseInt(item.i)].h = item.h;
+        })
+        this.setState({})
         console.log(layout);
       }}>
         {this.state.config.map((stack, index) => {
