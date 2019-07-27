@@ -18,6 +18,7 @@ export default class GridLayout extends React.Component {
     this.state = {
       config: null
     }
+    this.saveConfig = this.saveConfig.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,10 @@ export default class GridLayout extends React.Component {
     })
   }
 
+  saveConfig(config){
+    localStorage.setItem();
+}
+
   render() {
     if (this.state.config == null) {
       return (
@@ -39,6 +44,8 @@ export default class GridLayout extends React.Component {
       )
     }
     return (
+    <>
+    <button onClick={this.saveConfig}>save config</button>
       <ReactGridLayout className="layout" cols={12} rowHeight={30} width={1200} autoSize={true}>
         {this.state.config.map((stack, index) => {
           let itemOptions ={
@@ -57,6 +64,7 @@ export default class GridLayout extends React.Component {
           )
         })}
       </ReactGridLayout>
+      </>
     )
   }
 }

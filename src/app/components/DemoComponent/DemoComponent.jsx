@@ -27,7 +27,7 @@ export default class StackItem extends Component {
 			yAxis: this.props.yAxis || null,
 			editMode: null
 		};
-		this.isValid = this.isValid.bind(this)
+		this.isValid = this.isValid.bind(this);
 	}
 
 	componentDidMount(){
