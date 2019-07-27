@@ -22,17 +22,24 @@ export default class GridLayout extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      config: [
-        { x: 0, y: 0, w: 8, h: 6, data: { data: "usersession", type: "AREA", xAxis: "dateTime", yAxis: "usersSessions" } },
-        { x: 9, y: 0, w: 4, h: 6, data: { data: "usersession", type: "LINE", xAxis: "dateTime", yAxis: "uniqueUsers" } },
-        { x: 0, y: 7, w: 12, h: 8, data: { data: "usersession", type: "BAR", xAxis: "dateTime", yAxis: "usersSessions" } }
-      ]
-    })
+      let config = localStorage.getItem("config");
+      if(!config){
+          config = [
+            { x: 0, y: 0, w: 8, h: 6, data: { data: "usersession", type: "AREA", xAxis: "dateTime", yAxis: "usersSessions" } },
+            { x: 9, y: 0, w: 4, h: 6, data: { data: "usersession", type: "LINE", xAxis: "dateTime", yAxis: "uniqueUsers" } },
+            { x: 0, y: 7, w: 12, h: 8, data: { data: "usersession", type: "BAR", xAxis: "dateTime", yAxis: "usersSessions" } }
+          ]
+      }else{
+          config = JSON.parse(config);
+      }
+        this.setState({
+        config: config
+        })
   }
 
-  saveConfig(config){
-    localStorage.setItem();
+  saveConfig(){
+    let config = this.state.config;
+    localStorage.setItem("config",JSON.stringify(config));
 }
 
   render() {
