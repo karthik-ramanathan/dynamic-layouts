@@ -38,6 +38,7 @@ export default class StackItem extends Component {
 
 	isValid() {
 		if (this.state.data != null && this.state.type !== null && this.state.xAxis !== null && this.state.yAxis !== null) {
+			this.props.onUpdate && this.props.onUpdate(this.state.data, this.state.type, this.state.xAxis, this.state.yAxis);
 			return false
 		}
 		return true

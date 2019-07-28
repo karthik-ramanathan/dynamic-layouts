@@ -97,7 +97,12 @@ export default class GridLayout extends React.Component {
                 <span className="remove"
                     onClick={this.onRemoveItem.bind(this, index)}
                     >x</span>
-              <StackItem {...stack.data} />
+              <StackItem {...stack.data} onUpdate={function(index,data,type,xAxis,yAxis){
+                this.state.config[index].data.data = data
+                this.state.config[index].data.type = type
+                this.state.config[index].data.xAxis = xAxis
+                this.state.config[index].data.yAxis = yAxis
+              }.bind(this, index)}/>
             </div>
           )
         })}
